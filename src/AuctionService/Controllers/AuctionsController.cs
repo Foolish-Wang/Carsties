@@ -2,6 +2,7 @@
 using AuctionService.DTOs;
 using AuctionService.Entities;
 using AutoMapper;
+using AutoMapper.QueryableExtensions;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -22,16 +23,18 @@ public class AuctionsController : ControllerBase
     }
 
     [HttpGet] // HTTP GET 方法，用于获取所有拍卖信息
-    public async Task<ActionResult<List<AuctionDto>>> GetAllAuctions()
+    public async Task<ActionResult<List<AuctionDto>>> GetAllAuctions(string date)
     {
-        // 从数据库中获取所有拍卖，并按物品的 "Make" 属性排序
-        var auctions = await _context.Auctions
-            .Include(x => x.Item) // 包括关联的 Item 数据
-            .OrderBy(x => x.Item.Make) // 按 "Make" 排序
-            .ToListAsync();
+        var query =  _context.Auctions
+            .OrderBy(x => x.Item.Make)
+            .AsQueryable();
 
-        // 使用 AutoMapper 将拍卖实体列表映射为拍卖 DTO 列表并返回
-        return _mapper.Map<List<AuctionDto>>(auctions);
+        if (!string.IsNullOrEmpty(date))
+        {
+            query = query.Where(x => x.UpdatedAt.CompareTo(DateTime.Parse(date).ToUniversalTime()) > 0);
+        }
+        
+        return await query.ProjectTo<AuctionDto>(_mapper.ConfigurationProvider).ToListAsync();
     }
 
     [HttpGet("{id}")] // HTTP GET 方法，用于根据拍卖 ID 获取特定的拍卖信息

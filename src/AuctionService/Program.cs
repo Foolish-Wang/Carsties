@@ -1,4 +1,6 @@
+using AuctionService.Consumers;
 using AuctionService.Data;
+using MassTransit;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -13,6 +15,26 @@ builder.Services.AddDbContext<AuctionDbContext>(opt =>
 
 //将 AutoMapper 服务添加到依赖注入容器中，并扫描当前应用程序域中的所有程序集以查找 AutoMapper 配置文件。这使得 AutoMapper 可以在应用程序中使用，并自动映射对象之间的属性。
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+
+builder.Services.AddMassTransit(x => 
+{
+    x.AddEntityFrameworkOutbox<AuctionDbContext>(o =>
+    {
+        o.QueryDelay = TimeSpan.FromSeconds(10);
+    
+        o.UsePostgres();
+        o.UseBusOutbox();
+    });
+    
+    x.AddConsumersFromNamespaceContaining<AuctionCreatedFaultConsumer>();
+    
+    x.SetEndpointNameFormatter(new KebabCaseEndpointNameFormatter("auction", false));
+
+    x.UsingRabbitMq((context, cfg) => 
+    {
+        cfg.ConfigureEndpoints(context);
+    });
+});
 
 var app = builder.Build();
 

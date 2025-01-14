@@ -12,16 +12,26 @@ namespace IdentityService.Pages.Diagnostics;
 [Authorize]
 public class Index : PageModel
 {
+   
+    private readonly ILogger<Index> _logger;
+
+    public Index(ILogger<Index> logger)
+    {
+        _logger = logger;
+    }
     public ViewModel View { get; set; } = default!;
 
     public async Task<IActionResult> OnGet()
     {
-        var localAddresses = new List<string?> { "127.0.0.1", "::1" };
+        var localAddresses = new List<string?> { "127.0.0.1", "::1" ,"::ffff:172.19.0.1"};
         if(HttpContext.Connection.LocalIpAddress != null)
         {
             localAddresses.Add(HttpContext.Connection.LocalIpAddress.ToString());
         }
-
+        
+        // 使用日志框架记录 RemoteIpAddress
+        _logger.LogInformation("Remote IP Address: {RemoteIpAddress}", HttpContext.Connection.RemoteIpAddress?.ToString() ?? "Unknown");
+        
         if (!localAddresses.Contains(HttpContext.Connection.RemoteIpAddress?.ToString()))
         {
             return NotFound();

@@ -1,4 +1,5 @@
 import './globals.css'
+import 'flowbite/dist/flowbite.css';
 import Navbar from './nav/Navbar'
 
 export const metadata = {

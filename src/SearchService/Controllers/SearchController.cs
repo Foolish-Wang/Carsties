@@ -27,7 +27,8 @@ public class SearchController : ControllerBase
         // 根据搜索参数中的 "OrderBy" 字段设置排序规则
         query = searchParams.OrderBy switch
         {
-            "make" => query.Sort(x => x.Ascending(a => a.Make)), // 按 "Make" 属性升序排列
+            "make" => query.Sort(x => x.Ascending(a => a.Make))
+                .Sort(x=>x.Ascending(a=>a.Model)), // 按 "Make" 属性升序排列
             "new"  => query.Sort(x => x.Descending(a => a.CreatedAt)), // 按 "CreatedAt" 属性降序排列
             _      => query.Sort(x => x.Ascending(a => a.AuctionEnd)) // 默认按 "AuctionEnd" 属性升序排列
         };

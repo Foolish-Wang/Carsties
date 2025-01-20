@@ -10,3 +10,4 @@ export default function Page({searchParams}: {searchParams: {callbackUrl: string
         />
     )
 }
+

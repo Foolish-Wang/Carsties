@@ -22,7 +22,7 @@ export default function Search() {
     }
 
     return (
-        <div className='flex w-[50%] items-center border-2 rounded-full py-2 shadow-sm'>
+        <div className='flex w-[50%]  items-center  rounded-full py-2 shadow-sm'>
             <input
                 onKeyDown={(e: any) => {
                     if (e.key === 'Enter') search();
@@ -32,15 +32,9 @@ export default function Search() {
                 type="text"
                 placeholder='Search for cars by make, model or color'
                 className='
-                flex-grow
-                pl-5
-                bg-transparent
-                focus:outline-none
-                border-transparent
-                focus:border-transparent
-                focus:ring-0
+                input-custom
                 text-sm
-                text-gray-600
+                text-gray-600           
             '
             />
             <button onClick={search}>

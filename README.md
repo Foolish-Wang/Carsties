@@ -75,4 +75,6 @@ Please use this [guide](https://www.hostinger.com/tutorials/how-to-edit-hosts-fi
 
 ## Update plan
 
-TBD
+1. Page layout refinement
+2. Functional upgrades
+3. Test suite development

@@ -17,32 +17,32 @@ This is an online platform for auctioning used cars. Sellers can list vehicle in
 
 ## How to run the app locally
 
-1.clone the repo
+1. Clone the repo
 
 ```shell
 git clone https://github.com/Foolish-Wang/Carsties.git
 ```
 
-2.Navigate to the Project Directory
+2. Navigate to the Project Directory
 
 ```shell
 cd Carsties
 ```
 
-3.Build the services
-You should make sure that you have installed docker on your computer before excuting this step.
+3. Build the services
+   You should make sure that you have installed docker on your computer before excuting this step.
 
 ```shell
 docker compose build
 ```
 
-4.Run the services
+4. Run the services
 
 ```shell
 docker compose up -d
 ```
 
-5.provide the app with an SSL certificate.
+5. Provide the app with an SSL certificate.
 
 To do this please install 'mkcert' onto your computer which you can get from [here](https://github.com/FiloSottile/mkcert). Once you have this you will need to install the local Certificate Authority by using:
 
@@ -50,7 +50,7 @@ To do this please install 'mkcert' onto your computer which you can get from [he
 mkcert -install
 ```
 
-6.Create the certificate and key file on your computer
+6. Create the certificate and key file on your computer
 
 ```shell
 cd devcerts
@@ -58,7 +58,7 @@ cd devcerts
 mkcert -key-file carsties.local.key -cert-file carsties.local.crt app.carsties.local api.carsties.local id.carsties.local
 ```
 
-7.Create an entry in your host file so you can reach the app by its domain name.
+7. Create an entry in your host file so you can reach the app by its domain name.
 
 Please use this [guide](https://www.hostinger.com/tutorials/how-to-edit-hosts-file) if you do not know how to do this. Create the following entry:
 
@@ -66,4 +66,4 @@ Please use this [guide](https://www.hostinger.com/tutorials/how-to-edit-hosts-fi
 127.0.0.1 id.carsties.local app.carsties.local api.carsties.local
 ```
 
-8.You should now be able to browse to the app on https://app.carsties.local
+8. You should now be able to browse to the app on https://app.carsties.local

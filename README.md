@@ -6,14 +6,16 @@ This is an online platform for auctioning used cars. Sellers can list vehicle in
 
 ## Main Tech Stack
 
-1. Next.js 15
+1. Next.js 13
 2. ASP.NET Core 7.0
 3. Docker
 4. MongoDB
 5. PostgreSQL
 6. MassTransit
 7. RabbitMQ
-8. Nginx
+8. SignalR
+9. NextAuth
+10. Nginx
 
 ## How to run the app locally
 

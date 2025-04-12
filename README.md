@@ -72,3 +72,7 @@ Please use this [guide](https://www.hostinger.com/tutorials/how-to-edit-hosts-fi
 ```
 
 8. You should now be able to browse to the app on https://app.carsties.local
+
+## Update plan
+
+TBD

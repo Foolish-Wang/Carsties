@@ -3,6 +3,7 @@
 This is an online platform for auctioning used cars. Sellers can list vehicle information, and buyers can place bids. The project was inspired by TryCatchLearn's course. This is my hands-on app for learning microservices.
 
 ## Architecture
+![Carties](https://github.com/user-attachments/assets/fa786963-442e-4503-aa69-08be274c326f)
 
 ## Main Tech Stack
 

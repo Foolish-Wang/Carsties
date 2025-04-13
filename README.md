@@ -78,3 +78,4 @@ Please use this [guide](https://www.hostinger.com/tutorials/how-to-edit-hosts-fi
 1. Page layout refinement
 2. Functional upgrades
 3. Test suite development
+4. Use Elasticsearch in SearchService
